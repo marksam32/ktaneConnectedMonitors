@@ -14,7 +14,13 @@ MonoBehaviour:
   id: ConnectedMonitorsModule
   title: Connected Monitors
   author: Marksam32, Lumbud84
-  description: 
+  description: "Wait, this doesn\u2019t seem that hard, what\u2019s all the fuss about.
+    Wait, I have to do this up to 15 times? Holy mother of...\n\nIdeas by: Lumbud84\nCreated
+    and impelemented by: Marksam32\r\nTwitch plays is supported.\n\nManual:\r\nPDF:
+    https://github.com/marksam32/ktaneConnectedMonitors/blob/master/Manual/pdfs/Modules/Connected%20Monitors%20%E2%80%94%20Keep%20Talking%20and%20Nobody%20Explodes%20Module.pdf\nHTML:
+    (soon)\n\nModule id: ConnectedMonitorsModule\nGithub: https://github.com/marksam32/ktaneConnectedMonitors\n\nIf
+    you want to report any bugs or typos in the manual or in the module, please contact
+    me on discord: Marksam32#6669"
   version: 1.0
   outputFolder: build
-  previewImage: {fileID: 0}
+  previewImage: {fileID: 2800000, guid: 3c6b2af09f63f344fb31d37979abb104, type: 3}
