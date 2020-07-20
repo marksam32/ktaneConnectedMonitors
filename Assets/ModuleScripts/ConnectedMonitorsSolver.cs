@@ -400,7 +400,7 @@ namespace ConnectedMonitors
 		        _logger.LogMessage("Candidates: " + Join(candidates.Select(x => (x.Index + 1).ToString())));
 
 		        var order = Constants.PressingOrder[_monitors[_startIndex].MonitorColor];
-		        _logger.LogMessage("The keys are: " + Join(order.Select(x => x.ToString())));
+		        _logger.LogMessage("The monitor in the bottom left corner is {0}, the keys are: {1}",_monitors[11].MonitorColor.ToString() ,Join(order.Select(x => x.ToString())));
 
 		        var monitorPressOrder = OrderBy(candidates, order);
 		        _logger.LogMessage("Press order: "  + Join(monitorPressOrder.Select(x => (x.Index + 1).ToString())));
