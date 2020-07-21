@@ -46,22 +46,20 @@ public class ConnectedMonitorsScript : MonoBehaviour
 
     private static int _moduleIdCounter = 1;
     private int _moduleId = 0;
-    private static int _connectedCounter = 1;
-    private int _connectedCount;
-    
-    
+    private static int _playedCount = 0;
+
+
     private bool isSolved = false;
     private static readonly IConnectedMonitorsRandom rnd = new ConnectedMonitorsUnityRandom();
     private static readonly Regex TwitchPlaysRegex = new Regex("^press (([1-9]|1[012345])( (1[012345]|[1-9])){0,14})$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
-    private static readonly Regex CableRegex = new Regex("^cable ([1-9]|1[012345]) (1[012345]|[1-9])$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
 
     private static readonly List<int> cycle = new List<int>{0, 1, 2, 6, 10, 14, 13, 12, 11, 7, 3, 4, 5, 9, 8}; 
 
     // Use this for initialization
     void Start()
     {
+        _playedCount = 0;
         _moduleId = _moduleIdCounter++;
-        _connectedCount = _connectedCounter++;
         _connectedMonitorsLogger = new ConnectedMonitorsLogger(_moduleId);
         float scalar = transform.lossyScale.x;
         foreach (var light in Lights)
@@ -83,11 +81,12 @@ public class ConnectedMonitorsScript : MonoBehaviour
 
     private void Activate()
     {
-        if (_connectedCount == 1)
+        if (_playedCount < 1)
         {
             StartCoroutine(StartSound());
+            _playedCount++;
         }
-        
+
         foreach (var cr in CableRenderers)
         {
             var cable = _cables.Find(x => x.Tag.Equals(cr.name, StringComparison.InvariantCultureIgnoreCase));
