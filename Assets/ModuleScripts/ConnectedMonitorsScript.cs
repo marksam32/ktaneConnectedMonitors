@@ -327,6 +327,7 @@ public class ConnectedMonitorsScript : MonoBehaviour
 
     private IEnumerator StartSound()
     {
+        yield return new WaitForSeconds(.5f);
         Audio.PlaySoundAtTransform(ButtonSounds[5].name, Module.transform);
         yield return new WaitForSeconds(.2f);
         Audio.PlaySoundAtTransform(ButtonSounds[5].name, Module.transform);
