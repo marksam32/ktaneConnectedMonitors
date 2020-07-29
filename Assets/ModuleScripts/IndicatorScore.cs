@@ -9,7 +9,7 @@ namespace ConnectedMonitors
         private static readonly Dictionary<Color, List<Pair<int, int>>> ColorOfIndicatorLightValues = new Dictionary<Color, List<Pair<int, int>>>
         {
             {Color.Red, new List<Pair<int, int>>{new Pair<int, int>(1, 2), new Pair<int, int>(-3, -1), new Pair<int, int>(3, 3)} },
-            {Color.Orange, new List<Pair<int, int>>{new Pair<int, int>(-2, -3), new Pair<int, int>(1, 3), new Pair<int, int>(2, 3)} },
+            {Color.Orange, new List<Pair<int, int>>{new Pair<int, int>(-2, -3), new Pair<int, int>(2, -2), new Pair<int, int>(2, 1)} },
             {Color.Green, new List<Pair<int, int>>{new Pair<int, int>(-3, -1), new Pair<int, int>(1, 3), new Pair<int, int>(2, 3)} },
             {Color.Blue, new List<Pair<int, int>>{new Pair<int, int>(3, 2), new Pair<int, int>(-1, 2), new Pair<int, int>(-1, 1)} },
             {Color.Purple, new List<Pair<int, int>>{new Pair<int, int>(1, -2), new Pair<int, int>(-2, 1), new Pair<int, int>(-3, -2)} },
