@@ -47,9 +47,9 @@ public class ConnectedMonitorsScript : MonoBehaviour
     private static int _moduleIdCounter = 1;
     private int _moduleId = 0;
     private static int _playedCount = 0;
-
-
+    
     private bool isSolved = false;
+    private bool solveBeforeAnimation = false;
     private static readonly IConnectedMonitorsRandom rnd = new ConnectedMonitorsUnityRandom();
     private static readonly Regex TwitchPlaysRegex = new Regex("^press (([1-9]|1[012345])( (1[012345]|[1-9])){0,14})$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
 
@@ -61,11 +61,7 @@ public class ConnectedMonitorsScript : MonoBehaviour
         _playedCount = 0;
         _moduleId = _moduleIdCounter++;
         _connectedMonitorsLogger = new ConnectedMonitorsLogger(_moduleId);
-        float scalar = transform.lossyScale.x;
-        foreach (var light in Lights)
-        {
-            light.range *= scalar;
-        }
+        
         InitMonitors();
         InitIndicators();
         InitCables();
@@ -81,6 +77,11 @@ public class ConnectedMonitorsScript : MonoBehaviour
 
     private void Activate()
     {
+        var scalar = transform.lossyScale.x;
+        foreach (var light in Lights)
+        {
+            light.range *= scalar;
+        }
         if (_playedCount < 1)
         {
             StartCoroutine(StartSound());
@@ -120,7 +121,7 @@ public class ConnectedMonitorsScript : MonoBehaviour
             {
                 MonitorButtons[j].AddInteractionPunch(.5f);
                 Audio.PlaySoundAtTransform(ButtonSounds[rnd.Range(0, ButtonSounds.Length)].name, Module.transform);
-                if (isSolved)
+                if (solveBeforeAnimation)
                     return false;
                 HandlePress(j);
                 return false;
@@ -182,7 +183,7 @@ public class ConnectedMonitorsScript : MonoBehaviour
             }
             if (_solver.IsSolved())
             {
-                isSolved = true;
+                solveBeforeAnimation = true;
                 _connectedMonitorsLogger.LogMessage("That is correct, module solved!");
                 StartCoroutine(SolveAnimation());
             }
@@ -342,7 +343,7 @@ public class ConnectedMonitorsScript : MonoBehaviour
     private IEnumerator BlinkLights()
     {
         var indicators = _solver.GetAllIndicators().Where(x => x.IsFlashing).ToList();
-        while (!isSolved)
+        while (!solveBeforeAnimation)
         {
             yield return new WaitForSeconds(1f);
             foreach(var indicator in indicators)
@@ -396,6 +397,7 @@ public class ConnectedMonitorsScript : MonoBehaviour
                 yield return new WaitForSeconds(.05f);
             }
             Audio.PlaySoundAtTransform(ButtonSounds[rnd.Range(0, ButtonSounds.Length)].name, Module.transform);
+            isSolved = true;
         }
         yield return new WaitForSeconds(.7f);
         foreach (var monitor in MonitorTexts)
@@ -431,13 +433,35 @@ public class ConnectedMonitorsScript : MonoBehaviour
                 yield return new WaitForSeconds(.35f);
             }
 
-            if (isSolved)
+            if (solveBeforeAnimation)
             {
                 yield return "solve";
             }
         }
         yield break;
-    } 
+    }
+
+    public IEnumerator TwitchHandleForcedSolve()
+    {
+        var monitors = _solver.CalculateOrder();
+        while (!solveBeforeAnimation)
+        {
+            var monitor = monitors.First();
+            MonitorButtons[monitor.Index].OnInteract();
+            monitors = _solver.CalculateOrder();
+            if (monitors == null)
+            {
+                break;
+            }
+            yield return new WaitForSeconds(.2f);
+            yield return true;
+        }
+
+        while (!isSolved)
+        {
+            yield return true;
+        }
+    }
 }
 
 public class CableInfo

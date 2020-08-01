@@ -11,7 +11,7 @@ namespace ConnectedMonitors
 	    private readonly IConnectedMonitorsRandom _rnd;
 	    private readonly List<Monitor> _monitors;
         private readonly IConnectedMonitorsLogger _logger;
-        private IList<Monitor> _monitorPressOrder;
+        internal IList<Monitor> _monitorPressOrder;
         private MonitorPressContext _monitorPressContext;
         private readonly int _startIndex;
         private readonly DebugPressContext _debugPressContext;
@@ -392,7 +392,13 @@ namespace ConnectedMonitors
 				        _logger.LogMessage("All monitors are negative. First press monitor(s) {0} in any order and then monitor(s) {1} in any order.", Join(max.Select(x => (x.Index + 1).ToString())), Join(min.Select(x => (x.Index + 1).ToString())));   
 			        }  
 		        }
-		        return new List<Monitor>();
+
+		        if (isMaxPressed)
+		        {
+			        return min;
+		        }
+
+		        return max;
 	        }
 	        else
 	        {
