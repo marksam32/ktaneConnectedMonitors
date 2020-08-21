@@ -197,6 +197,11 @@ Prefab:
       propertyPath: AudioClips.Array.data[7]
       value: 
       objectReference: {fileID: 8300000, guid: 495888b27ec6d9c4699643fd96910824, type: 3}
+    - target: {fileID: 114848120511536268, guid: 8814ea52310d2614a9feda02ec355ae4,
+        type: 2}
+      propertyPath: TimeLimit
+      value: 600
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8814ea52310d2614a9feda02ec355ae4, type: 2}
   m_IsPrefabParent: 0

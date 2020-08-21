@@ -368,6 +368,10 @@ public class ConnectedMonitorsScript : MonoBehaviour
 
     private IEnumerator SolveAnimation()
     {
+        if (Info.GetTime() < 30f)
+        {
+            Module.HandlePass();
+        }
         foreach (var monitor in _monitors)
         {
             var materials = ScreenRenderers[monitor.Index].materials;

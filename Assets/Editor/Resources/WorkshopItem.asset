@@ -13,4 +13,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WorkshopPublishedFileID: 2171311295
   Title: Connected Monitors
-  Tags: []
+  Tags:
+  - Regular Module
