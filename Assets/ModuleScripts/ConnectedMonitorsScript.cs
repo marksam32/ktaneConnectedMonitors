@@ -401,7 +401,6 @@ public class ConnectedMonitorsScript : MonoBehaviour
                 yield return new WaitForSeconds(.05f);
             }
             Audio.PlaySoundAtTransform(ButtonSounds[rnd.Range(0, ButtonSounds.Length)].name, Module.transform);
-            isSolved = true;
         }
         yield return new WaitForSeconds(.7f);
         foreach (var monitor in MonitorTexts)
@@ -409,6 +408,7 @@ public class ConnectedMonitorsScript : MonoBehaviour
             monitor.text = "✓";
         }
         Audio.PlaySoundAtTransform(ButtonSounds[7].name, Module.transform);
+        isSolved = true;
         Module.HandlePass();
     }
 
