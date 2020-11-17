@@ -458,7 +458,6 @@ public class ConnectedMonitorsScript : MonoBehaviour
                 break;
             }
             yield return new WaitForSeconds(.2f);
-            yield return true;
         }
 
         while (!isSolved)
