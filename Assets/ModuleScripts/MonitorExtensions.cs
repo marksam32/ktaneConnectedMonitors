@@ -17,7 +17,6 @@ namespace ConnectedMonitors
                 monitor.AddScore("5", CableScore.GetCableScore(monitor));
             }
 
-            //For testing purposes ONLY
             if (monitor.EnsurePositive)
             {
                 var score = monitor.Score;
