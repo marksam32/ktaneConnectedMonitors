@@ -156,14 +156,6 @@ public class ConnectedMonitorsScript : MonoBehaviour
         if (result == PressState.Strike)
         {
             _connectedMonitorsLogger.LogMessage("That is incorrect. Strike!");
-            var changes = _solver.RecalculateDisplayOnStrike(i);
-            if (changes.Changed.Any())
-            {
-                foreach (var change in changes.Changed)
-                {
-                    MonitorTexts[change.Index].text = change.DisplayValue.ToString();
-                }
-            }
             Module.HandleStrike();
         }
         else
@@ -442,7 +434,6 @@ public class ConnectedMonitorsScript : MonoBehaviour
                 yield return "solve";
             }
         }
-        yield break;
     }
 
     public IEnumerator TwitchHandleForcedSolve()

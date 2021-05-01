@@ -6,6 +6,5 @@
         NegativeContextMaxPress,
         NegativeContextNoMinSet,
         NegativeContextMinPress
-        
     }   
 }

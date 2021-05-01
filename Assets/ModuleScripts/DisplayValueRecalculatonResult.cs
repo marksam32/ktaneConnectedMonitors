@@ -4,7 +4,7 @@ namespace ConnectedMonitors
 {
 	public class DisplayValueRecalculatonResult
 	{
-		private IList<Monitor> _changed;
+		private readonly IList<Monitor> _changed;
 
 		public DisplayValueRecalculatonResult()
 		{

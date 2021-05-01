@@ -49,7 +49,7 @@ namespace ConnectedMonitors
             {11, new List<CableInfo>{Create(12, CableDirection.E)} },
             {12, new List<CableInfo>{Create(13, CableDirection.E)} },
             {13, new List<CableInfo>{Create(14, CableDirection.E)} },
-            {14, new List<CableInfo>{} }
+            {14, new List<CableInfo>()}
         };
         
         private static CableInfo Create(int index, CableDirection direction)

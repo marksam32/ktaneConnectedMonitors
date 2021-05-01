@@ -101,39 +101,6 @@ namespace ConnectedMonitors
 	        return result;
         }
 
-        internal DisplayValueRecalculatonResult RecalculateDisplayOnStrike(int i)
-        {
-	        var result = new DisplayValueRecalculatonResult();
-	        var monitors = _monitors.Where(x => !x.IsPressed).ToList();
-	        if (monitors.Any())
-	        {
-		        var usedValues = GetUsedValues();
-		        foreach (var monitor in monitors)
-		        {
-			        result.Add(monitor);
-			        monitor.DisplayValue = GetRandomValue(100, usedValues);
-			        var oldScore = monitor.Score;
-			        _logger.LogMessage("A strike was received. Which caused monitor {1} to change. New display: {2}", i + 1, monitor.Index + 1, monitor.DisplayValue);
-			        monitor.CalculateScore();
-			        if (HasChangedSign(oldScore, monitor.Score))
-			        {
-				        result.HasChangedSign = true;
-			        }
-
-			        _logger.LogMessage("Score for index: {0}, changed from: {1}, to: {2}.", monitor.Index + 1, oldScore, monitor.Score);
-		        }
-		        
-		        if (result.HasChangedSign)
-		        {
-			        _monitorPressContext.IsNegativeContext = IsInNegativeContext();
-		        }
-		        
-		        _monitorPressOrder = CalculateOrder();
-	        }
-
-	        return result;
-        }
-
         internal void DumpInfo()
         {
 	        StringBuilder builder = new StringBuilder();
