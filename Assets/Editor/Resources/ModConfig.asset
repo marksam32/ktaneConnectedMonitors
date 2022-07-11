@@ -18,9 +18,7 @@ MonoBehaviour:
     Wait, I have to do this up to 15 times? Holy mother of...\n\nIdeas by: Lumbud84\nCreated
     and impelemented by: Marksam32\r\nTwitch plays is supported.\n\nManual:\r\nPDF:
     https://ktane.timwi.de/PDF/Connected%20Monitors.pdf\nHTML: https://ktane.timwi.de/HTML/Connected%20Monitors.html\n\nModule
-    id: ConnectedMonitorsModule\nGithub: https://github.com/marksam32/ktaneConnectedMonitors\n\nIf
-    you want to report any bugs or typos in the manual or in the module, please contact
-    me on discord: Marksam32#6669"
+    id: ConnectedMonitorsModule\nGithub: https://github.com/marksam32/ktaneConnectedMonitors"
   version: 1.0
   outputFolder: build
   previewImage: {fileID: 2800000, guid: 3c6b2af09f63f344fb31d37979abb104, type: 3}
